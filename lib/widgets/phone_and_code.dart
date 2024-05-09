@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_eye_2_project/extenions/theme.dart';
 
 class PhoneAndCodeWidget extends StatefulWidget {
   final String buttonName;
@@ -50,6 +51,8 @@ class _PhoneAndCodeWidgetState extends State<PhoneAndCodeWidget> {
 
   @override
   void dispose() {
+    _phoneController.dispose();
+    _codeController.dispose();
     _timer?.cancel();
     super.dispose();
   }
@@ -84,6 +87,7 @@ class _PhoneAndCodeWidgetState extends State<PhoneAndCodeWidget> {
                   maxLines: 1,
                   controller: _phoneController,
                   keyboardType: TextInputType.phone,
+                  style: context.textTheme.titleMedium,
                   textInputAction: TextInputAction.next,
                   inputFormatters: [
                     FilteringTextInputFormatter.digitsOnly,
@@ -92,16 +96,14 @@ class _PhoneAndCodeWidgetState extends State<PhoneAndCodeWidget> {
                   onChanged: (value) {
                     setState(() {});
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     counterText: '',
                     border: InputBorder.none,
                     isDense: true,
                     isCollapsed: true,
                     hintText: '输入手机号',
-                    hintStyle: TextStyle(
-                      color: Color(0xFFCECECE),
-                      fontSize: 16,
-                      height: 1,
+                    hintStyle: context.textTheme.titleMedium?.copyWith(
+                      color: const Color(0xFFCECECE),
                     ),
                   ),
                 ),
@@ -140,6 +142,7 @@ class _PhoneAndCodeWidgetState extends State<PhoneAndCodeWidget> {
                         maxLines: 1,
                         controller: _codeController,
                         keyboardType: TextInputType.number,
+                        style: context.textTheme.titleMedium,
                         textInputAction: TextInputAction.done,
                         inputFormatters: [
                           FilteringTextInputFormatter.digitsOnly,
@@ -148,16 +151,14 @@ class _PhoneAndCodeWidgetState extends State<PhoneAndCodeWidget> {
                         onChanged: (value) {
                           setState(() {});
                         },
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           counterText: '',
                           border: InputBorder.none,
                           isDense: true,
                           isCollapsed: true,
                           hintText: '输入验证码',
-                          hintStyle: TextStyle(
-                            color: Color(0xFFCECECE),
-                            fontSize: 16,
-                            height: 1,
+                          hintStyle: context.textTheme.titleMedium?.copyWith(
+                            color: const Color(0xFFCECECE),
                           ),
                         ),
                       ),

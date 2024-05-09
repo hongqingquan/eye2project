@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_eye_2_project/pages/home.dart';
-
-import '../widgets/custom_app_bar.dart';
 import '../widgets/phone_and_code.dart';
 import '../widgets/set_safe_code.dart';
 
@@ -21,8 +17,24 @@ class _ChangeSafeCodePageState extends State<ChangeSafeCodePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const CustomAppBar(
-        title: '修改安全密码',
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+        title: const Text('修改安全密码',),
+        leadingWidth: 60,
+        leading: IconButton(
+          icon: Image.asset(
+            'assets/images/position_icon_back.png',
+            width: 20,
+            height: 20,
+            fit: BoxFit.contain,
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
