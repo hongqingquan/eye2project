@@ -145,7 +145,7 @@ class _SetSafeCodeWidgetState extends State<SetSafeCodeWidget> {
                   border: InputBorder.none,
                   isDense: true,
                   isCollapsed: true,
-                  hintText: '输入验证码',
+                  hintText: '重复密码',
                   hintStyle: context.textTheme.titleMedium?.copyWith(
                     color: const Color(0xFFCECECE),
                   ),

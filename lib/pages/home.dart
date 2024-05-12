@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_eye_2_project/pages/patients.dart';
+import 'package:flutter_eye_2_project/extenions/theme.dart';
+import 'package:flutter_eye_2_project/pages/patient_list.dart';
 import 'package:flutter_eye_2_project/pages/settings.dart';
 
 class HomePage extends StatefulWidget {
@@ -68,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                 bottom: 26,
                 right: 30,
                 child: InkWell(
-                  onTap: () => _toPatientsPage(context),
+                  onTap: () => _toPatientListPage(context),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -103,9 +104,9 @@ class _HomePageState extends State<HomePage> {
         .push(MaterialPageRoute(builder: (context) => const SettingsPage()));
   }
 
-  void _toPatientsPage(BuildContext context) {
+  void _toPatientListPage(BuildContext context) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const PatientsPage()));
+        .push(MaterialPageRoute(builder: (context) => const PatientListPage()));
   }
 
 }
@@ -163,22 +164,21 @@ class _ContentState extends State<_Content> {
                         maxLines: 1,
                         controller: _codeController,
                         keyboardType: TextInputType.text,
+                        style: context.textTheme.titleMedium,
                         textInputAction: TextInputAction.done,
                         inputFormatters: [],
                         onEditingComplete: () {},
                         onChanged: (value) {
                           setState(() {});
                         },
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           counterText: '',
                           border: InputBorder.none,
                           isDense: true,
                           isCollapsed: true,
                           hintText: '输入病历号',
-                          hintStyle: TextStyle(
-                            color: Color(0xFFCECECE),
-                            fontSize: 16,
-                            height: 1,
+                          hintStyle: context.textTheme.titleMedium?.copyWith(
+                            color: const Color(0xFFCECECE),
                           ),
                         ),
                       ),

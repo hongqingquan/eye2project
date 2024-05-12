@@ -80,11 +80,9 @@ class SettingsPage extends StatelessWidget {
 }
 
 class _Item extends StatelessWidget {
-  _Item({super.key, required this.title, this.isFill = false, this.onTap});
+  _Item({super.key, required this.title, this.onTap});
 
   String title;
-
-  bool isFill;
 
   VoidCallback? onTap;
 
@@ -99,18 +97,16 @@ class _Item extends StatelessWidget {
           height: 48,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            border: isFill
-                ? null
-                : Border.all(color: const Color(0xFFE8E8E8), width: 1),
-            color: isFill ? const Color(0xFF0099C2) : Colors.white,
+            border: Border.all(color: const Color(0xFFE8E8E8), width: 1),
+            color: Colors.white,
           ),
           alignment: Alignment.center,
           child: Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: isFill ? Colors.white : const Color(0xFF002846),
+              color: Color(0xFF002846),
               height: 1,
             ),
           ),

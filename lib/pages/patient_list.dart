@@ -7,16 +7,16 @@ import 'package:oktoast/oktoast.dart';
 
 import '../widgets/base/dialog.dart';
 import '../widgets/base/show_custom_dialog.dart';
-import 'archives.dart';
+import 'patient_archive.dart';
 
-class PatientsPage extends StatefulWidget {
-  const PatientsPage({super.key});
+class PatientListPage extends StatefulWidget {
+  const PatientListPage({super.key});
 
   @override
-  State<PatientsPage> createState() => _PatientsPageState();
+  State<PatientListPage> createState() => _PatientListPageState();
 }
 
-class _PatientsPageState extends State<PatientsPage> {
+class _PatientListPageState extends State<PatientListPage> {
   bool isEdit = false;
 
   List<PatientInfo> patientList = [
@@ -338,7 +338,7 @@ class _PatientItem extends StatelessWidget {
         if (isEdit) {
           onSelect();
         } else {
-          _toArchivesPage(context);
+          _toPatientArchivePage(context);
         }
       },
       onLongPress: onLongPress,
@@ -442,8 +442,8 @@ class _PatientItem extends StatelessWidget {
     );
   }
 
-  void _toArchivesPage(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ArchivesPage(patientInfo: info)));
+  void _toPatientArchivePage(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => PatientArchivePage(patientInfo: info)));
   }
 }
 

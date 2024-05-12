@@ -3,43 +3,44 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_eye_2_project/extenions/theme.dart';
-import 'package:flutter_eye_2_project/pages/patients.dart';
+import 'package:flutter_eye_2_project/pages/report.dart';
+import 'package:flutter_eye_2_project/pages/patient_list.dart';
 import 'package:oktoast/oktoast.dart';
 
 import '../widgets/base/dialog.dart';
 import '../widgets/base/show_custom_dialog.dart';
 
-class ArchivesPage extends StatefulWidget {
-  const ArchivesPage({super.key, required this.patientInfo});
+class PatientArchivePage extends StatefulWidget {
+  const PatientArchivePage({super.key, required this.patientInfo});
 
   final PatientInfo patientInfo;
 
   @override
-  State<ArchivesPage> createState() => _ArchivesPageState();
+  State<PatientArchivePage> createState() => _PatientArchivePageState();
 }
 
-class _ArchivesPageState extends State<ArchivesPage> {
+class _PatientArchivePageState extends State<PatientArchivePage> {
   bool isEdit = false;
 
-  List<ArchiveInfo> archiveList = [
-    ArchiveInfo(time: '2024年3月28日 10:18:54', items: ['九方位', '歪头实验', '单眼注视', '代偿头位', '自定义']),
-    ArchiveInfo(time: '2024年3月28日 10:28:54', items: ['九方位', '歪头实验', '单眼注视', '代偿头位', '自定义']),
-    ArchiveInfo(time: '2024年3月28日 10:38:54', items: ['九方位', '歪头实验', '单眼注视', '代偿头位', '自定义']),
+  List<ReportInfo> reportList = [
+    ReportInfo(time: '2024年3月28日 10:18:54', items: ['九方位', '歪头实验', '单眼注视', '代偿头位', '自定义']),
+    ReportInfo(time: '2024年3月28日 10:28:54', items: ['九方位', '歪头实验', '单眼注视', '代偿头位', '自定义']),
+    ReportInfo(time: '2024年3月28日 10:38:54', items: ['九方位', '歪头实验', '单眼注视', '代偿头位', '自定义']),
   ];
 
-  List<ArchiveInfo> get selectedList => archiveList.where((it) => it.isSelected == true).toList();
+  List<ReportInfo> get selectedList => reportList.where((it) => it.isSelected == true).toList();
 
-  bool get isAllSelected => archiveList.every((it) => it.isSelected == true);
+  bool get isAllSelected => reportList.every((it) => it.isSelected == true);
 
   void _selectAll() {
-    for (var it in archiveList) {
+    for (var it in reportList) {
       it.isSelected = true;
     }
     setState(() {});
   }
 
   void _unSelectAll() {
-    for (var it in archiveList) {
+    for (var it in reportList) {
       it.isSelected = false;
     }
     setState(() {});
@@ -122,11 +123,11 @@ class _ArchivesPageState extends State<ArchivesPage> {
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                itemCount: archiveList.length,
+                itemCount: reportList.length,
                 itemExtent: 99,
                 itemBuilder: (context, index) {
-                  final info = archiveList[index];
-                  return _ArchiveItem(
+                  final info = reportList[index];
+                  return _ReportItem(
                     key: ValueKey(info.time),
                     info: info,
                     isEdit: isEdit,
@@ -204,7 +205,7 @@ class _PatientInfoView extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  flex: 2,
+                  flex: 4,
                   child: _InfoItem(
                     title: '病历号',
                     content: info.id,
@@ -214,7 +215,7 @@ class _PatientInfoView extends StatelessWidget {
                   width: 12,
                 ),
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: _InfoItem(
                     title: '姓名',
                     content: info.name,
@@ -224,7 +225,7 @@ class _PatientInfoView extends StatelessWidget {
                   width: 12,
                 ),
                 Expanded(
-                  flex: 1,
+                  flex: 3,
                   child: _InfoItem(
                     title: '年龄',
                     content: '${info.age}岁',
@@ -248,8 +249,8 @@ class _PatientInfoView extends StatelessWidget {
 }
 
 
-class _ArchiveItem extends StatelessWidget {
-  const _ArchiveItem({
+class _ReportItem extends StatelessWidget {
+  const _ReportItem({
     super.key,
     required this.info,
     required this.onLongPress,
@@ -257,7 +258,7 @@ class _ArchiveItem extends StatelessWidget {
     this.isEdit = false,
   });
 
-  final ArchiveInfo info;
+  final ReportInfo info;
 
   final VoidCallback onLongPress;
 
@@ -272,7 +273,7 @@ class _ArchiveItem extends StatelessWidget {
         if (isEdit) {
           onSelect();
         } else {
-          _toArchiveDetailPage(context);
+          _toReportPage(context);
         }
       },
       onLongPress: onLongPress,
@@ -357,7 +358,10 @@ class _ArchiveItem extends StatelessWidget {
     );
   }
 
-  void _toArchiveDetailPage(BuildContext context) {}
+  void _toReportPage(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const ReportPage()));
+  }
 }
 
 class _CollectItem extends StatelessWidget {
@@ -605,10 +609,10 @@ class _DeleteDialogState extends State<_DeleteDialog> {
   }
 }
 
-class ArchiveInfo {
+class ReportInfo{
   final String time;
   final List<String> items;
   bool isSelected;
 
-  ArchiveInfo({required this.time, required this.items, this.isSelected = false});
+  ReportInfo({required this.time, required this.items, this.isSelected = false});
 }
