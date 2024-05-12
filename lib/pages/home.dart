@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_eye_2_project/pages/patients.dart';
 import 'package:flutter_eye_2_project/pages/settings.dart';
 
 class HomePage extends StatefulWidget {
@@ -67,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                 bottom: 26,
                 right: 30,
                 child: InkWell(
-                  onTap: () => _toArchivesPage(context),
+                  onTap: () => _toPatientsPage(context),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -102,8 +103,9 @@ class _HomePageState extends State<HomePage> {
         .push(MaterialPageRoute(builder: (context) => const SettingsPage()));
   }
 
-  void _toArchivesPage(BuildContext context) {
-
+  void _toPatientsPage(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const PatientsPage()));
   }
 
 }

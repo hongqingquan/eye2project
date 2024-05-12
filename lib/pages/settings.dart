@@ -310,7 +310,7 @@ class _TopUpDialogState extends State<_TopUpDialog> {
             child: Row(
               children: [
                 Image.asset(
-                  'assets/images/position_icon_img_6.png',
+                  'assets/images/position_icon_img_11.png',
                   width: 20,
                   height: 20,
                   fit: BoxFit.contain,

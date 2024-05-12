@@ -36,22 +36,24 @@ class _ChangeSafeCodePageState extends State<ChangeSafeCodePage> {
           },
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Center(
-          child: AnimatedCrossFade(
-            duration: const Duration(milliseconds: 300),
-            crossFadeState: crossFadeState,
-            firstChild: PhoneAndCodeWidget(
-              buttonName: '确定修改',
-              onTap: () {
-                setState(() {
-                  crossFadeState = CrossFadeState.showSecond;
-                });
-              },
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Center(
+            child: AnimatedCrossFade(
+              duration: const Duration(milliseconds: 300),
+              crossFadeState: crossFadeState,
+              firstChild: PhoneAndCodeWidget(
+                buttonName: '确定修改',
+                onTap: () {
+                  setState(() {
+                    crossFadeState = CrossFadeState.showSecond;
+                  });
+                },
+              ),
+              secondChild:
+              SetSafeCodeWidget(onTap: () => _onChangeSafeCode(context)),
             ),
-            secondChild:
-            SetSafeCodeWidget(onTap: () => _onChangeSafeCode(context)),
           ),
         ),
       ),
